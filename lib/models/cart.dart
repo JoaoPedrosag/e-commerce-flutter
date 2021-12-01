@@ -41,7 +41,7 @@ class Cart with ChangeNotifier {
       );
     }
   }
-  /// parei no carrrinho 11:38 236
+  /// parei no carrrinho 11:38 236 .......
 
   void removeItem(String productId) {
     _items.remove(productId);
