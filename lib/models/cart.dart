@@ -16,6 +16,14 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
+  String get totalAmount {
+    double total = 0.0;
+    _items.forEach((key, CartItem) {
+      total += CartItem.price * CartItem.quantity;
+    });
+    return total.toStringAsFixed(2);
+  }
+
   void addItem(Product product) {
     if (_items.containsKey(product.id)) {
       _items.update(
@@ -34,14 +42,14 @@ class Cart with ChangeNotifier {
         () => CartItem(
           id: Random().nextDouble().toString(),
           productId: product.id,
-          name: product.name
+          name: product.name,
           quantity: 1,
           price: product.price,
         ),
       );
     }
+    notifyListeners();
   }
-  /// parei no carrrinho 11:38 236 .......
 
   void removeItem(String productId) {
     _items.remove(productId);
